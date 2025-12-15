@@ -18,7 +18,12 @@ def set_korean_font():
         font_name = 'Malgun Gothic'
     elif system == 'Darwin':  # macOS
         font_name = 'AppleGothic'
-    else:  # Linux
+    else:  # Linux (Streamlit Cloud)
+        # Streamlit Cloud용 폰트 설정
+        font_dirs = ['/usr/share/fonts/truetype/nanum']
+        font_files = fm.findSystemFonts(fontpaths=font_dirs)
+        for font_file in font_files:
+            fm.fontManager.addfont(font_file)
         font_name = 'NanumGothic'
     
     plt.rcParams['font.family'] = font_name
